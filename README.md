@@ -18,24 +18,39 @@ We created a general EngineException class and inherited IncorrectEngineExceptio
 ## Example of pricing European vanilla call option.
 Define type of the option: Call or Put: 
 
-'''
+```
 Payoff::Type type{Payoff::Call};
-'''
+```
 
 Define exercise type of the option: European:
 
-'''
+```
 Payoff::Exercise exercise(Payoff::European);
-'''
+```
 
 Create an AnalyticEuropeanEngine instance and pass underlying price, volatility, risk-free rate and cost of carry parameter:
+
+```
 auto analytic_engine{std::make_shared<AnalyticEuropeanEngine>(S, sig, r, b)};
+```
+
 Create a Payoff instance and pass expiration time in years, strike price, type of option (call or put) and exercise type of option (European or American):
+
+```
 auto payoff_call{std::make_shared<Payoff>(T_vector[i], K_vector[i], type, exercise)};
+```
+
 Define VanillaOption instance and pass Payoff object and Pricing Engine object:
+
+```
 VanillaOption myEuropeanCall{payoff_call, analytic_engine};
+```
+
 Get option price:
+
+```
 double price = myEuropeanCall.getPrice();
+```
 
 In general, we could extend our codebase by creating an abstract class Instrument and inheriting the Option’s class from it. This would allow other financial derivatives, such as futures, to be priced by passing a Pricing Engine to it.
 
