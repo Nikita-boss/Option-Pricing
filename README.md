@@ -17,12 +17,17 @@ We created a general EngineException class and inherited IncorrectEngineExceptio
 
 ## Example of pricing European vanilla call option.
 Define type of the option: Call or Put: 
+
 '''
 Payoff::Type type{Payoff::Call};
 '''
+
 Define exercise type of the option: European:
 
+'''
 Payoff::Exercise exercise(Payoff::European);
+'''
+
 Create an AnalyticEuropeanEngine instance and pass underlying price, volatility, risk-free rate and cost of carry parameter:
 auto analytic_engine{std::make_shared<AnalyticEuropeanEngine>(S, sig, r, b)};
 Create a Payoff instance and pass expiration time in years, strike price, type of option (call or put) and exercise type of option (European or American):
