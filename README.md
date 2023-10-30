@@ -52,6 +52,12 @@ Get option price:
 double price = myEuropeanCall.getPrice();
 ```
 
+Get option delta:
+
+```
+double call_delta = myEuropeanCall.getDelta();
+```
+
 In general, we could extend our codebase by creating an abstract class Instrument and inheriting the Option’s class from it. This would allow other financial derivatives, such as futures, to be priced by passing a Pricing Engine to it.
 
 Moreover, we encapsulated certain functions inside the Helper_functions namespace to help solve problems related to pricing options given vector or matrix of parameters. For example, we have a print function to print option parameters along with their price or greeks, a mesh function to return a vector of doubles with a certain number of intervals, compute function that returns a matrix of option prices given a matrix of parameters.
